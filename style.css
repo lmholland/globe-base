@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "retropixels";
+    src: url("retropixels.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
