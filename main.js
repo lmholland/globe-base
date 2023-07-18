@@ -42920,7 +42920,7 @@ class Launcher{
         this.currentCity = Math.floor(Math.random() * this.cityInfo.length);
         this.pin1Lat = this.cityInfo[this.currentCity][2];
         this.pin1Lon = this.cityInfo[this.currentCity][3];
-        this.time = 30;
+        this.time = 60;
         this.points = 0;
         this.goUp = false;
         this.goDown = false;
@@ -42960,7 +42960,7 @@ class Launcher{
         this.cityVector = new THREE.Vector3();
         this.cityVector = this.globe.worldToLocal(this.cityVector);
         this.citiesGuessed = 0;
-        this.totalTime = 30;
+        this.totalTime = 60;
         this.gen = this.generateEverything();
         this.ready = this.setScene();
     }
@@ -42970,6 +42970,8 @@ class Launcher{
         this.controller();
         this.createStars();
         this.createStartscreenDiv();
+        this.createStartscreenDiv2();
+        this.createStartscreenDiv3();
         this.createCitiesGuessedDiv();
         this.createCityDiv();
         this.createTotalTimeDiv();
@@ -43015,6 +43017,8 @@ class Launcher{
             this.startscreenDiv.style.paddingRight = "30px";
             this.startscreenDiv.style.backgroundColor = "gray";
             this.startscreenDiv.style.borderRadius = "15px";
+            this.startscreenI.style.display = "block";
+            this.startscreenH.style.display = "block";
         }, 3000);
     }
 
@@ -43023,7 +43027,7 @@ class Launcher{
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.pin1.visible = false;
         this.globe.add(this.pin1);
-        this.scene.add(this.globe, this.startscreenText, this.cityText, this.timeText, this.gameOverText, this.playAgainText, this.bgText, this.totalTimeText, this.citiesGuessedText);
+        this.scene.add(this.globe, this.startscreenText, this.startscreenText2, this.startscreenText3, this.cityText, this.timeText, this.gameOverText, this.playAgainText, this.bgText, this.totalTimeText, this.citiesGuessedText);
         this.camera.position.z = 10;
         this.controls.saveState();
     }
@@ -43049,6 +43053,32 @@ class Launcher{
         this.startscreenDiv = document.createElement("div");
         this.startscreenDiv.appendChild(this.startscreenP);
         this.startscreenText = new CSS2DObject(this.startscreenDiv);
+    }
+
+    createStartscreenDiv2(){
+        this.startscreenI = document.createElement("p");
+        this.startscreenI.textContent = "Right-click to set your pin";
+        this.startscreenI.style.display = "none"
+        this.startscreenI.style.fontSize = "1.5vh";
+        this.startscreenI.style.fontFamily = "retropixels";
+        this.startscreenI.style.color = "ivory";
+        this.startscreenI.style.transform = "translateY(7vh)";
+        this.startscreenDiv2 = document.createElement("div");
+        this.startscreenDiv2.appendChild(this.startscreenI);
+        this.startscreenText2 = new CSS2DObject(this.startscreenDiv2);
+    }
+
+    createStartscreenDiv3(){
+        this.startscreenH = document.createElement("p");
+        this.startscreenH.textContent = "Get as close to the city as you can";
+        this.startscreenH.style.display = "none"
+        this.startscreenH.style.fontSize = "1.5vh";
+        this.startscreenH.style.fontFamily = "retropixels";
+        this.startscreenH.style.color = "ivory";
+        this.startscreenH.style.transform = "translateY(10vh)";
+        this.startscreenDiv3 = document.createElement("div");
+        this.startscreenDiv3.appendChild(this.startscreenH);
+        this.startscreenText3 = new CSS2DObject(this.startscreenDiv3);
     }
 
     createCityDiv(){
@@ -43347,7 +43377,7 @@ class Launcher{
                 launcher.countdown = setInterval(() => {launcher.getTime();}, 1000);
                 launcher.cityP.textContent = `${launcher.cityInfo[launcher.currentCity][0]}, ${launcher.cityInfo[launcher.currentCity][1]}`;
                 launcher.timeP.textContent = launcher.time;
-                launcher.scene.remove(launcher.startscreenText, launcher.startButtonText);
+                launcher.scene.remove(launcher.startscreenText, launcher.startscreenText2, launcher.startscreenText3, launcher.startButtonText);
             }
         }
     }
