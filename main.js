@@ -42969,9 +42969,17 @@ class Launcher{
         this.timeToStart();
         this.controller();
         this.createStars();
-        this.createStartscreenDiv();
-        this.createStartscreenDiv2();
-        this.createStartscreenDiv3();
+        this.createSsTitle();
+        this.createSsLoading();
+        this.createSsDirections();
+        this.createSsPin();
+        this.createSsClose();
+        this.createSsCity();
+        this.createSsLeft();
+        this.createSsRight();
+        this.createSsMap();
+        this.createSsLoads();
+        this.createSsStart();
         this.createCitiesGuessedDiv();
         this.createCityDiv();
         this.createTotalTimeDiv();
@@ -43012,13 +43020,17 @@ class Launcher{
 
     timeToStart(){
         setTimeout(()=>{
-            this.startscreenP.textContent = "Start";
-            this.startscreenDiv.style.paddingLeft = "30px";
-            this.startscreenDiv.style.paddingRight = "30px";
-            this.startscreenDiv.style.backgroundColor = "gray";
-            this.startscreenDiv.style.borderRadius = "15px";
-            this.startscreenI.style.display = "block";
-            this.startscreenH.style.display = "block";
+            this.ssLoadingP.style.display = "none";
+            this.ssTitleP.style.display = "block";
+            this.ssDirP.style.display = "block";
+            this.ssPinP.style.display = "block";
+            this.ssCloseP.style.display = "block";
+            this.ssCityP.style.display = "block";
+            this.ssLeftP.style.display = "block";
+            this.ssRightP.style.display = "block";
+            this.ssMapP.style.display = "block";
+            this.ssLoadsP.style.display = "block";
+            this.ssStartP.style.display = "block";
         }, 3000);
     }
 
@@ -43027,7 +43039,27 @@ class Launcher{
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.pin1.visible = false;
         this.globe.add(this.pin1);
-        this.scene.add(this.globe, this.startscreenText, this.startscreenText2, this.startscreenText3, this.cityText, this.timeText, this.gameOverText, this.playAgainText, this.bgText, this.totalTimeText, this.citiesGuessedText);
+        this.scene.add(
+            this.globe, 
+            this.ssLoading, 
+            this.ssTitle, 
+            this.ssDir, 
+            this.ssPin, 
+            this.ssClose,
+            this.ssCity,
+            this.ssLeft, 
+            this.ssRight, 
+            this.ssMap, 
+            this.ssLoads, 
+            this.ssStart,
+            this.cityText, 
+            this.timeText, 
+            this.gameOverText, 
+            this.playAgainText, 
+            this.bgText, 
+            this.totalTimeText, 
+            this.citiesGuessedText
+        );
         this.camera.position.z = 10;
         this.controls.saveState();
     }
@@ -43043,42 +43075,151 @@ class Launcher{
             }
     }
 
-    createStartscreenDiv(){
-        this.startscreenP = document.createElement("p");
-        this.startscreenP.textContent = "Loading...";
-        this.startscreenP.style.fontSize = "2vh";
-        this.startscreenP.style.fontFamily = "retropixels";
-        this.startscreenP.style.color = "ivory";
-        this.startscreenP.style.transform = "translateY(0vh)";
-        this.startscreenDiv = document.createElement("div");
-        this.startscreenDiv.appendChild(this.startscreenP);
-        this.startscreenText = new CSS2DObject(this.startscreenDiv);
+    createSsTitle(){
+        this.ssTitleP = document.createElement("p");
+        this.ssTitleP.textContent = "Pin The Globe";
+        this.ssTitleP.style.display = "none";
+        this.ssTitleP.style.textAlign = "center";
+        this.ssTitleP.style.fontSize = "6vh";
+        this.ssTitleP.style.fontFamily = "retropixels";
+        this.ssTitleP.style.color = "ivory";
+        this.ssTitleP.style.transform = "translateY(-30vh)";
+        this.ssTitleDiv = document.createElement("div");
+        this.ssTitleDiv.appendChild(this.ssTitleP);
+        this.ssTitle = new CSS2DObject(this.ssTitleDiv);
     }
 
-    createStartscreenDiv2(){
-        this.startscreenI = document.createElement("p");
-        this.startscreenI.textContent = "Right-click to set your pin";
-        this.startscreenI.style.display = "none"
-        this.startscreenI.style.fontSize = "1.5vh";
-        this.startscreenI.style.fontFamily = "retropixels";
-        this.startscreenI.style.color = "ivory";
-        this.startscreenI.style.transform = "translateY(7vh)";
-        this.startscreenDiv2 = document.createElement("div");
-        this.startscreenDiv2.appendChild(this.startscreenI);
-        this.startscreenText2 = new CSS2DObject(this.startscreenDiv2);
+    createSsLoading(){
+        this.ssLoadingP = document.createElement("p");
+        this.ssLoadingP.textContent = "Loading...";
+        this.ssLoadingP.style.fontSize = "2vh";
+        this.ssLoadingP.style.fontFamily = "retropixels";
+        this.ssLoadingP.style.color = "ivory";
+        this.ssLoadingP.style.transform = "translateY(0vh)";
+        this.ssLoadingDiv = document.createElement("div");
+        this.ssLoadingDiv.appendChild(this.ssLoadingP);
+        this.ssLoading = new CSS2DObject(this.ssLoadingDiv);
     }
 
-    createStartscreenDiv3(){
-        this.startscreenH = document.createElement("p");
-        this.startscreenH.textContent = "Get as close to the city as you can";
-        this.startscreenH.style.display = "none"
-        this.startscreenH.style.fontSize = "1.5vh";
-        this.startscreenH.style.fontFamily = "retropixels";
-        this.startscreenH.style.color = "ivory";
-        this.startscreenH.style.transform = "translateY(10vh)";
-        this.startscreenDiv3 = document.createElement("div");
-        this.startscreenDiv3.appendChild(this.startscreenH);
-        this.startscreenText3 = new CSS2DObject(this.startscreenDiv3);
+    createSsDirections(){
+        this.ssDirP = document.createElement("p");
+        this.ssDirP.textContent = "Directions";
+        this.ssDirP.style.display = "none"
+        this.ssDirP.style.textDecoration = "underline";
+        this.ssDirP.style.fontSize = "1.5vh";
+        this.ssDirP.style.fontFamily = "retropixels";
+        this.ssDirP.style.color = "ivory";
+        this.ssDirP.style.transform = "translateY(-13vh)";
+        this.ssDirDiv = document.createElement("div");
+        this.ssDirDiv.appendChild(this.ssDirP);
+        this.ssDir = new CSS2DObject(this.ssDirDiv);
+    }
+
+    createSsPin(){
+        this.ssPinP = document.createElement("p");
+        this.ssPinP.textContent = "Set your pin as close";
+        this.ssPinP.style.display = "none"
+        this.ssPinP.style.fontSize = "1.5vh";
+        this.ssPinP.style.fontFamily = "retropixels";
+        this.ssPinP.style.color = "ivory";
+        this.ssPinP.style.transform = "translateY(-10vh)";
+        this.ssPinDiv = document.createElement("div");
+        this.ssPinDiv.appendChild(this.ssPinP);
+        this.ssPin = new CSS2DObject(this.ssPinDiv);
+    }
+
+    createSsClose(){
+        this.ssCloseP = document.createElement("p");
+        this.ssCloseP.textContent = "as you can to the city";
+        this.ssCloseP.style.display = "none"
+        this.ssCloseP.style.fontSize = "1.5vh";
+        this.ssCloseP.style.fontFamily = "retropixels";
+        this.ssCloseP.style.color = "ivory";
+        this.ssCloseP.style.transform = "translateY(-7vh)";
+        this.ssCloseDiv = document.createElement("div");
+        this.ssCloseDiv.appendChild(this.ssCloseP);
+        this.ssClose = new CSS2DObject(this.ssCloseDiv);
+    }
+
+    createSsCity(){
+        this.ssCityP = document.createElement("p");
+        this.ssCityP.textContent = "listed at the top";
+        this.ssCityP.style.display = "none"
+        this.ssCityP.style.fontSize = "1.5vh";
+        this.ssCityP.style.fontFamily = "retropixels";
+        this.ssCityP.style.color = "ivory";
+        this.ssCityP.style.transform = "translateY(-4vh)";
+        this.ssCityDiv = document.createElement("div");
+        this.ssCityDiv.appendChild(this.ssCityP);
+        this.ssCity = new CSS2DObject(this.ssCityDiv);
+    }
+
+    createSsLeft(){
+        this.ssLeftP = document.createElement("p");
+        this.ssLeftP.textContent = "Left mouse: rotate globe";
+        this.ssLeftP.style.display = "none"
+        this.ssLeftP.style.fontSize = "1.5vh";
+        this.ssLeftP.style.fontFamily = "retropixels";
+        this.ssLeftP.style.color = "ivory";
+        this.ssLeftP.style.transform = "translateY(2vh)";
+        this.ssLeftDiv = document.createElement("div");
+        this.ssLeftDiv.appendChild(this.ssLeftP);
+        this.ssLeft = new CSS2DObject(this.ssLeftDiv);
+    }
+
+    createSsRight(){
+        this.ssRightP = document.createElement("p");
+        this.ssRightP.textContent = "Right mouse: set pin";
+        this.ssRightP.style.display = "none"
+        this.ssRightP.style.fontSize = "1.5vh";
+        this.ssRightP.style.fontFamily = "retropixels";
+        this.ssRightP.style.color = "ivory";
+        this.ssRightP.style.transform = "translateY(5vh)";
+        this.ssRightDiv = document.createElement("div");
+        this.ssRightDiv.appendChild(this.ssRightP);
+        this.ssRight = new CSS2DObject(this.ssRightDiv);
+    }
+
+    createSsMap(){
+        this.ssMapP = document.createElement("p");
+        this.ssMapP.textContent = "p.s. the higher quality map";
+        this.ssMapP.style.display = "none"
+        this.ssMapP.style.fontSize = "1.5vh";
+        this.ssMapP.style.fontFamily = "retropixels";
+        this.ssMapP.style.color = "ivory";
+        this.ssMapP.style.transform = "translateY(11vh)";
+        this.ssMapDiv = document.createElement("div");
+        this.ssMapDiv.appendChild(this.ssMapP);
+        this.ssMap = new CSS2DObject(this.ssMapDiv);
+    }
+
+    createSsLoads(){
+        this.ssLoadsP = document.createElement("p");
+        this.ssLoadsP.textContent = "loads slow on some machines";
+        this.ssLoadsP.style.display = "none"
+        this.ssLoadsP.style.fontSize = "1.5vh";
+        this.ssLoadsP.style.fontFamily = "retropixels";
+        this.ssLoadsP.style.color = "ivory";
+        this.ssLoadsP.style.transform = "translateY(14vh)";
+        this.ssLoadsDiv = document.createElement("div");
+        this.ssLoadsDiv.appendChild(this.ssLoadsP);
+        this.ssLoads = new CSS2DObject(this.ssLoadsDiv);
+    }
+
+    createSsStart(){
+        this.ssStartP = document.createElement("p");
+        this.ssStartP.textContent = "Start";
+        this.ssStartP.style.display = "none"
+        this.ssStartP.style.fontSize = "3vh";
+        this.ssStartP.style.fontFamily = "retropixels";
+        this.ssStartP.style.color = "ivory";
+        this.ssStartP.style.transform = "translateY(30vh)";
+        this.ssStartP.style.padding = "20px 30px";
+        this.ssStartP.style.backgroundColor = "gray";
+        this.ssStartP.style.borderRadius = "15px";
+        this.ssStartDiv = document.createElement("div");
+        this.ssStartDiv.appendChild(this.ssStartP);
+        this.ssStart = new CSS2DObject(this.ssStartDiv);
     }
 
     createCityDiv(){
@@ -43366,10 +43507,10 @@ class Launcher{
         }
 
         if (launcher.isStartscreen == true){
-            let t = launcher.startscreenDiv.getClientRects()[0].top;
-            let b = launcher.startscreenDiv.getClientRects()[0].bottom;
-            let l = launcher.startscreenDiv.getClientRects()[0].left;
-            let r = launcher.startscreenDiv.getClientRects()[0].right;
+            let t = launcher.ssStartP.getClientRects()[0].top;
+            let b = launcher.ssStartP.getClientRects()[0].bottom;
+            let l = launcher.ssStartP.getClientRects()[0].left;
+            let r = launcher.ssStartP.getClientRects()[0].right;
             let clicked = l < click.offsetX && click.offsetX < r && t < click.offsetY && click.offsetY < b;
 
             if(clicked){
@@ -43377,7 +43518,19 @@ class Launcher{
                 launcher.countdown = setInterval(() => {launcher.getTime();}, 1000);
                 launcher.cityP.textContent = `${launcher.cityInfo[launcher.currentCity][0]}, ${launcher.cityInfo[launcher.currentCity][1]}`;
                 launcher.timeP.textContent = launcher.time;
-                launcher.scene.remove(launcher.startscreenText, launcher.startscreenText2, launcher.startscreenText3, launcher.startButtonText);
+                launcher.scene.remove(
+                    launcher.ssTitle, 
+                    launcher.ssLoading, 
+                    launcher.ssDir, 
+                    launcher.ssPin,
+                    launcher.ssClose,
+                    launcher.ssCity,
+                    launcher.ssLeft, 
+                    launcher.ssRight, 
+                    launcher.ssMap, 
+                    launcher.ssLoads, 
+                    launcher.ssStart
+                );
             }
         }
     }
